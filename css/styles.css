@@ -1,0 +1,166 @@
+/* 3d-Marquee/css/styles.css for 3d-Marquee.bauska.org */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #458ecc;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Poppins', sans-serif;
+  overflow: hidden;
+}
+
+.marquee-world {
+  width: 120%;
+  margin: 0 -10%;
+  perspective: 1200px;
+  perspective-origin: center center;
+  overflow: visible;
+  position: relative;
+  transition: margin 0.1s ease-out;
+}
+.marquee-rotated-stage {
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: visible;
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+}
+.marquee-container {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(12px);
+  border-top: 2px solid rgba(255, 220, 100, 0.6);
+  border-bottom: 2px solid rgba(255, 220, 100, 0.6);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+.marquee-track {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0;
+  width: max-content;
+  will-change: transform;
+  animation: scrollRightToLeft 25s linear infinite;
+}
+.marquee-track.reverse {
+  animation-name: scrollLeftToRight;
+}
+.marquee-container:hover .marquee-track {
+  animation-play-state: paused;
+}
+.marquee-group {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.8rem 1.8rem;
+  font-size: clamp(1.3rem, 4vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6), 0 0 12px rgba(255, 200, 50, 0.5);
+  white-space: nowrap;
+}
+.marquee-item.image-item {
+  padding: 0.4rem 1rem;
+  gap: 0.5rem;
+}
+.marquee-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(255, 220, 100, 0.6);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+  display: block;
+}
+.marquee-img:hover {
+  transform: scale(1.1);
+  border-color: #ffdd77;
+}
+.separator {
+  font-size: 2rem;
+  padding: 0 0.8rem;
+  color: #ffda77;
+  font-weight: 400;
+  text-shadow: 0 0 5px rgba(255, 200, 0, 0.8);
+}
+.marquee-item .icon {
+  font-size: 1.3em;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+}
+.copy {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  top: #000;
+  background: rgb(255 255 255 / .9);
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  z-index: 100;
+  pointer-events: none
+}
+
+@keyframes scrollRightToLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scrollLeftToRight {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .marquee-track {
+    animation-duration: 18s;
+  }
+  .marquee-item {
+    padding: 0.5rem 1rem;
+    font-size: 1.1rem;
+  }
+  .marquee-img {
+    width: 36px;
+    height: 36px;
+  }
+  .separator {
+    font-size: 1.4rem;
+    padding: 0 0.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .marquee-img {
+    width: 28px;
+    height: 28px;
+  }
+  .marquee-item {
+    padding: 0.3rem 0.7rem;
+  }
+}
+
+.dg.ac {
+  z-index: 1000 !important;
+}
