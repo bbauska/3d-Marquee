@@ -164,3 +164,11 @@ body {
 .dg.ac {
   z-index: 1000 !important;
 }
+
+.top-message {
+  position: absolute; /* Positions relative to the body or container */
+  top: 0;             /* Aligns to the very top */
+  left: 0;            /* Aligns to the left edge */
+  width: 100%;        /* Spans across the entire container */
+}
+
